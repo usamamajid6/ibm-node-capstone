@@ -11,17 +11,14 @@ app.use(express.json())
 app.use(expressPino)
 
 app.post('/sentiment', async (req, res) => {
-  
   const { sentence } = req.query
   if (!sentence) {
     logger.error('No sentence provided')
     return res.status(400).json({ error: 'No sentence provided' })
   }
-  
   const Analyzer = natural.SentimentAnalyzer
   const stemmer = natural.PorterStemmer
   const analyzer = new Analyzer('English', stemmer, 'afinn')
-  
   try {
     const analysisResult = analyzer.getSentiment(sentence.split(' '))
     let sentiment = 'neutral'
@@ -30,13 +27,10 @@ app.post('/sentiment', async (req, res) => {
     } else {
       sentiment = 'negative'
     }
-
     logger.info(`Sentiment analysis result: ${analysisResult}`)
-
     res.status(200).json({ sentimentScore: analysisResult, sentiment })
   } catch (error) {
     logger.error(`Error performing sentiment analysis: ${error}`)
-    
     res.status(500).json({
       message: error?.message || 'No Error Message!'
     })
