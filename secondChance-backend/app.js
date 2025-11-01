@@ -2,6 +2,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const pinoLogger = require('./logger');
 
 const connectToDatabase = require('./models/db');
@@ -13,6 +14,8 @@ const {loadData} = require("./util/import-mongo/index");
 
 const app = express();
 app.use("*",cors());
+app.use(express.static(path.join(__dirname, 'public')));
+
 const port = 3000;
 
 // Connect to MongoDB; we just do this one time
