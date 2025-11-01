@@ -4,14 +4,11 @@ const logger = require('./logger')
 const expressPino = require('express-pino-logger')({ logger })
 const natural = require('natural')
 
-
 const app = express()
 const port = process.env.PORT || 4000
 
 app.use(express.json())
 app.use(expressPino)
-
-
 
 app.post('/sentiment', async (req, res) => {
   
@@ -41,7 +38,7 @@ app.post('/sentiment', async (req, res) => {
     logger.error(`Error performing sentiment analysis: ${error}`)
     
     res.status(500).json({
-      message: error?.message || 'No Error Message!',
+      message: error?.message || 'No Error Message!'
     })
   }
 })
