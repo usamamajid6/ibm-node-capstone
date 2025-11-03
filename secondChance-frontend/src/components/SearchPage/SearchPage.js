@@ -118,7 +118,7 @@ function SearchPage() {
                                     <img src={urlConfig.backendUrl+product.image} alt={product.name} className="card-img-top" />
                                     <div className="card-body">
                                         <h5 className="card-title">{product.name}</h5>
-                                        <p className="card-text">{product.description.slice(0, 100)}...</p>
+                                        <p className="card-text">{product.description?.slice(0, 100)}...</p>
                                     </div>
                                     <div className="card-footer">
                                         <button onClick={() => goToDetailsPage(product.id)} className="btn btn-primary">

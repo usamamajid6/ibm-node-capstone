@@ -42,3 +42,8 @@ a.text-primary:hover {
 a.text-secondary:hover {
     text-decoration: underline;
 }
+
+
+.cursor-pointer:hover {
+    cursor: pointer;
+}
